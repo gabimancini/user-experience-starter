@@ -3,7 +3,8 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { ThirdwebProvider } from "thirdweb/react";
 import { cn } from "@/lib/utils";
-
+import { Toaster } from "react-hot-toast";
+import Header from "@/components/Header";
 const fontSans = FontSans({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -28,7 +29,11 @@ export default function RootLayout({
           fontSans.variable,
         )}
       >
-        <ThirdwebProvider>{children}</ThirdwebProvider>
+        <ThirdwebProvider>
+        <Toaster />
+          <Header />
+          {children}
+          </ThirdwebProvider>
       </body>
     </html>
   );

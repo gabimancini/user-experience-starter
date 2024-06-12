@@ -3,6 +3,7 @@ import { ConnectButton } from "thirdweb/react";
 import thirdwebIcon from "@public/thirdweb.svg";
 import { client } from "@/lib/thirdwebClient";
 import MintButton from "@/components/MintButton";
+import Swapper from "@/components/Swapper";
 
 export default function Home() {
   return (
@@ -10,7 +11,7 @@ export default function Home() {
       <div className="py-20">
         <Header />
 
-        <div className="flex flex-col justify-center mb-20 max-w-40">
+      {/* <div className="flex flex-col justify-center mb-20 max-w-40">
           <ConnectButton
             client={client}
             appMetadata={{
@@ -19,9 +20,9 @@ export default function Home() {
             }}
           />
           <MintButton contractAddress={"this is a contract"} />
-        </div>
-
-        <ThirdwebResources />
+        </div>*/} 
+        <Swapper />
+       {/* <ThirdwebResources /> */}
       </div>
     </main>
   );

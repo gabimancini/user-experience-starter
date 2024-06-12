@@ -1,15 +1,17 @@
 "use client";
 
 type Props = { contractAddress: string };
-import { getContract, prepareContractCall } from "thirdweb";
+import { getContract, prepareContractCall, readContract } from "thirdweb";
 
 import { optimism } from "thirdweb/chains";
 import { client } from "@/lib/thirdwebClient";
-import { useCallback, useMemo } from "react";
-import { useSendTransaction } from "thirdweb/react";
-import { parseUnits } from "ethers";
-
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { useActiveAccount, useSendTransaction } from "thirdweb/react";
+import { ethers, parseUnits } from "ethers"; 
+import { balanceOf } from "thirdweb/extensions/erc20";
+const contractABI  = require('./ABI');
 export default function MintButton(props: Props) {
+ 
   const {
     mutate: sendTransaction,
     data,
@@ -27,12 +29,30 @@ export default function MintButton(props: Props) {
         // the chain the contract is deployed on
         chain: optimism,
         // the contract's address
-        address: "0x5Be2eEe4D534298C6F089479c904D6edA18F28F0",
+        address: "0x94b008aA00579c1307B0EF2c499aD98a8ce58e58",
+        //abi:contractABI.status
       }),
     []
   );
 
-  const onClick = useCallback(async () => {
+  const address = useActiveAccount();
+  const [balance, setBalance] = useState(0n)
+   useEffect(() => {
+    async function run() {
+      console.log(address?.address)
+      if (address?.address) {
+        const balance = await balanceOf({
+          contract: contract,
+           address: address?.address,
+        });
+        setBalance(balance)
+        console.log(balance)
+      }
+    }
+    run()
+  }, [address?.address, contract])
+
+  const onClick = useCallback(  () => {
     const transaction = prepareContractCall({
       contract,
       method: "function mint(address to, uint256 amount)",
@@ -48,7 +68,10 @@ export default function MintButton(props: Props) {
   console.log(error);
   console.log(failureReason);
   console.log(status);
-
+const formatNumber = useMemo(()=>{
+  if(balance)  return ethers.formatUnits(balance, 6)
+ return 0;
+},[balance])
   return (
     <div>
       <button
@@ -60,7 +83,7 @@ export default function MintButton(props: Props) {
       >
         mint 10.5 tokens
       </button>
-
+      {formatNumber}
       <p>data</p>
     </div>
   );
