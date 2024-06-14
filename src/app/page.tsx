@@ -1,8 +1,10 @@
+'use client'
 import Image from "next/image";
 import { ConnectButton } from "thirdweb/react";
 import thirdwebIcon from "@public/thirdweb.svg";
 import { client } from "@/lib/thirdwebClient";
-import MintButton from "@/components/MintButton";
+import Balance from "@/components/Balance";
+import Swapper from "@/components/Swapper";
 
 export default function Home() {
   return (
@@ -18,9 +20,9 @@ export default function Home() {
               url: "https://example.com",
             }}
           />
-          <MintButton contractAddress={"this is a contract"} />
+          <Balance contractAddress={"this is a contract"} />
         </div>
-
+<Swapper />
         <ThirdwebResources />
       </div>
     </main>
@@ -58,7 +60,7 @@ function Header() {
 
 function ThirdwebResources() {
   return (
-    <div className="grid gap-4 lg:grid-cols-3 justify-center">
+    <div className="grid gap-4 lg:grid-cols-3 justify-center mt-[160px]">
       <ArticleCard
         title="thirdweb SDK Docs"
         href="https://portal.thirdweb.com/typescript/v5"
