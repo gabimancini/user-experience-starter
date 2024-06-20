@@ -18,11 +18,11 @@ export default function WalletForm() {
             "params": [
                 {
                     "name": "email",
-                    "value": "gabimancinir@gmail.com"
+                    "value": "value"
                 },
                 {
                     "name": "token",
-                    "value": "200"
+                    "value": "value"
                 }
             ]
         });
