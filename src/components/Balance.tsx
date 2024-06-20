@@ -7,11 +7,11 @@ import { optimism } from "thirdweb/chains";
 import { client } from "@/lib/thirdwebClient";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useActiveAccount, useSendTransaction } from "thirdweb/react";
-import { ethers, parseUnits } from "ethers"; 
+import { ethers, parseUnits } from "ethers";
 import { balanceOf } from "thirdweb/extensions/erc20";
 
 export default function Balance(props: Props) {
- 
+
   const {
     mutate: sendTransaction,
     data,
@@ -36,13 +36,13 @@ export default function Balance(props: Props) {
 
   const address = useActiveAccount();
   const [balance, setBalance] = useState(0n)
-   useEffect(() => {
+  useEffect(() => {
     async function run() {
       console.log(address?.address)
       if (address?.address) {
         const balance = await balanceOf({
           contract: contract,
-           address: address?.address,
+          address: address?.address,
         });
         setBalance(balance)
         console.log(balance)
@@ -51,19 +51,19 @@ export default function Balance(props: Props) {
     run()
   }, [address?.address, contract])
 
- 
+
 
   console.log(data);
   console.log(error);
   console.log(failureReason);
   console.log(status);
-const formatNumber = useMemo(()=>{
-  if(balance)  return ethers.formatUnits(balance, 6)
- return 0;
-},[balance])
+  const formatNumber = useMemo(() => {
+    if (balance) return ethers.formatUnits(balance, 6)
+    return 0;
+  }, [balance])
   return (
-    <div>
-     <p>Your Balance is <span> {formatNumber}</span></p>
-    </div>
+    < >
+      {address ? <p className="text-white pr-2">Your Balance is <span className="font-bold"> {formatNumber}</span></p> : ""}
+    </>
   );
 }

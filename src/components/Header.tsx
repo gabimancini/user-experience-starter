@@ -1,16 +1,25 @@
 "use client";
 import React from "react";
-import ConnectButton from "./ConnectButton";
-import Wrapper from "./Wrapper";
 import Image from "next/image";
-
+import { ConnectButton } from "thirdweb/react";
+import { client } from "@/lib/thirdwebClient"; 
+import Balance from "@/components/Balance";
+import Logo from './../../public/logoSolo.png'
 export default function Header() {
     return (
-        <header className="flex p-4 max-w-7xl mx-auto justify-between w-full">
-            <div className="flex gap-2 items-center"><Image src="/thirdweb.png" alt="" width={300} height={300} className="w-10 h-10" /><h1 className="text-2xl font-bold">TokenSwap</h1></div>
-            <div className="flex gap-2 items-stretch">
-                <Wrapper />
-                <ConnectButton />
+        <header className="flex p-4  mx-auto justify-between w-full px-4">
+            <div className="flex items-center"><Image src={Logo} width="50" alt="logo" height="50" /><h1 className="text-white text-[24px]">EALLET</h1></div>
+            <div className="flex justify-center items-center">
+                 <Balance contractAddress={"this is a contract"} />  
+            
+                <ConnectButton 
+                    client={client}
+                    appMetadata={{
+                        name: "Example App",
+                        url: "https://example.com",
+                    }}
+                />
+               
             </div>
         </header>
     )
