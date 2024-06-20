@@ -76,10 +76,12 @@
   }
 }
 
-body {
+body, form{
   background-color: #032031;
 }
-
+button{
+  background-color: #853CC1;
+}
 img {
   height: fit-content !important;
 }

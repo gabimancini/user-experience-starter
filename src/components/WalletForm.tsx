@@ -1,5 +1,4 @@
 import React from "react";
-
 export default function WalletForm() {
     const [values, setValues] = React.useState({
         email: "",
@@ -58,21 +57,23 @@ export default function WalletForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4-slate">
-            <h2>Solicitud de Tokens</h2>
-            <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="email">Correo Electrónico</label>
+        <div className="px-20 order-1  md:w-[50%] flex flex-col justify-center">
+         <h2 className="text-white text-[35px] ">Solicitud de Tokens</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col max-w-[420px] shadow-md rounded  mb-4-slate">
+            <div className="mt-6">
+                <label className="block text-white text-sm font-bold mb-2" htmlFor="email">Correo Electrónico</label>
                 <input
                     id="email"
                     name="email"
                     type="email"
                     value={values.email}
+                    placeholder="miemail@email.com"
                     onChange={handleChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
             </div>
-            <div className="mb-4">
-                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tokens">Cantidad de Tokens</label>
+            <div className="mt-6">
+                <label className="block text-white text-sm font-bold mb-2" htmlFor="tokens">Cantidad de Tokens</label>
                 <input
                     id="tokens"
                     name="tokens"
@@ -82,8 +83,9 @@ export default function WalletForm() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
             </div>
-            <p>{messages}</p>
-            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">Enviar</button>
+            <p className="text-green-400 mt-4">{messages}</p>
+            <button className=" hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-12" type="submit">Enviar</button>
         </form>
+        </div>
     );
 }

@@ -10,7 +10,7 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "thirdweb SDK + Next starter",
+  title: "EALLET",
   description:
     "Starter template for using thirdweb SDK with Next.js App router",
 };
