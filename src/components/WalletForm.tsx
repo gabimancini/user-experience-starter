@@ -75,7 +75,7 @@ export default function WalletForm() {
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="tokens">Cantidad de Tokens</label>
                 <input
                     id="tokens"
-                    name="passtokensword"
+                    name="tokens"
                     type="number"
                     value={values.tokens}
                     onChange={handleChange}
