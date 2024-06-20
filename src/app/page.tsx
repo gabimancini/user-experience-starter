@@ -11,7 +11,7 @@ export default function Home() {
     <>
       <Header />
       <main className="p-4 pb-10 min-h-[85vh] flex flex-col md:flex-row items-center">
-       <div className="absolute w-full md:relative md:w-[50%] min-h-[85vh]">
+       <div className="z-[-1] md:z-0 absolute w-full md:relative md:w-[50%] min-h-[85vh]">
         <Image src={bg1} alt="Fondo cículo 1" className="absolute bottom-0" />
         <Image src={bg2} alt="Fondo cículo 1" className="absolute top-4" />
         <Image src={bg3} alt="Fondo cículo 1" className="absolute right-16 bottom-32" />
