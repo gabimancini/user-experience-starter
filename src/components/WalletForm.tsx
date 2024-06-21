@@ -2,7 +2,7 @@ import React from "react";
 export default function WalletForm() {
     const [values, setValues] = React.useState({
         email: "",
-        tokens:0,
+        tokens: "",
     });
     const [messages, setMessages] = React.useState("");
 
@@ -18,12 +18,12 @@ export default function WalletForm() {
             "params": [
                 {
                     "name": "email",
-                    "value": "value"
-                },
-                {
+                    "value": values.email
+                  },
+                  {
                     "name": "token",
-                    "value": "value"
-                }
+                    "value": values.tokens
+                  }
             ]
         });
 
@@ -36,13 +36,21 @@ export default function WalletForm() {
 
         fetch("https://api.stamping.io/exec/", requestOptions)
             .then((response) => response.text())
-            .then((result) => console.log(result))
-            .catch((error) => console.error(error));
+            .then((result) => {
+                console.log(result)
+                setMessages("Token Enviado con éxito. Revisa tu email")
+            })
+            .catch((error) =>{
+                console.error(error)
+                setMessages("Error al errar enviar tokens")
+            });
+            console.log(values)
             setValues({
                 email: "",
-                tokens: 0,
+                tokens:"",
             })
-            setMessages("Token Enviado con éxito. Revisa tu email")
+          
+           
     }
 
     function handleChange(evt: { target: any; }) {
@@ -77,7 +85,7 @@ export default function WalletForm() {
                 <input
                     id="tokens"
                     name="tokens"
-                    type="number"
+                    type="text"
                     value={values.tokens}
                     onChange={handleChange}
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
