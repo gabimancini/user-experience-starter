@@ -5,9 +5,10 @@ export default function WalletForm() {
         tokens: "",
     });
     const [messages, setMessages] = React.useState("");
-
+    const [loading, setLoading] = React.useState(false)
     function handleSubmit(evt: { preventDefault: () => void; }) {
         evt.preventDefault();
+        setLoading(true)
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -33,11 +34,12 @@ export default function WalletForm() {
             body: raw,
             redirect: "follow"
         };
-
+      
         fetch("https://api.stamping.io/exec/", requestOptions)
             .then((response) => response.text())
             .then((result) => {
                 console.log(result)
+                setLoading(false)
                 setMessages("Token Enviado con éxito. Revisa tu email")
             })
             .catch((error) =>{
@@ -49,7 +51,6 @@ export default function WalletForm() {
                 email: "",
                 tokens:"",
             })
-          
            
     }
 
@@ -61,7 +62,8 @@ export default function WalletForm() {
             [name]: value,
         };
         setValues(newValues);
-        setMessages("")
+        setMessages("");
+      
     }
 
     return (
@@ -91,6 +93,7 @@ export default function WalletForm() {
                     className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 />
             </div>
+            {loading && <p className="text-white">Enviando tokens...</p>}
             <p className="text-green-400 mt-4">{messages}</p>
             <button className=" hover:bg-violet-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mt-12" type="submit">Enviar</button>
         </form>
