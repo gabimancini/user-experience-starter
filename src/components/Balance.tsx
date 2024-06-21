@@ -63,7 +63,7 @@ export default function Balance(props: Props) {
   }, [balance])
   return (
     < >
-      {address ? <p className="text-white pr-2">Your Balance is <span className="font-bold"> {formatNumber}</span></p> : ""}
+      {address ? <p className="text-white pr-2 order-1 md:order-[-1]">Your Balance is <span className="font-bold"> {formatNumber}</span></p> : ""}
     </>
   );
 }
